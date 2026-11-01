@@ -1,0 +1,22 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Python projects: keep Python on one release line (argument: the line, e.g. python(3.13))",
+  "packageRules": [
+    {
+      "description": "Keep Python on the {{arg0}} release line (pep621, Dockerfile images, setup-python)",
+      "matchDepNames": ["python"],
+      "allowedVersions": "/^v?{{arg0}}(?:[.-]|$)/"
+    },
+    {
+      "description": "Keep the GitHub Actions Python runner on the {{arg0}} release line",
+      "matchPackageNames": ["actions/python-versions"],
+      "allowedVersions": "/^v?{{arg0}}(?:[.-]|$)/"
+    },
+    {
+      "description": "Group Python dependency updates",
+      "matchManagers": ["pep621"],
+      "matchDepNames": ["!python"],
+      "groupName": "python dependencies"
+    }
+  ]
+}

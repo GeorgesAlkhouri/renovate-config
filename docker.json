@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Container images: release-age handling, linuxserver.io versioning, base image grouping",
+  "packageRules": [
+    {
+      "description": "Registries such as ghcr.io expose no release timestamps; without this the 7-day age gate holds those updates forever. Images with a timestamp still wait 7 days.",
+      "matchDatasources": ["docker"],
+      "minimumReleaseAgeBehaviour": "timestamp-optional"
+    },
+    {
+      "description": "linuxserver.io tags look like 4.0.17.2952-ls305: compare the upstream version and treat -lsNNN as revision",
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["ghcr.io/linuxserver/**", "lscr.io/linuxserver/**", "linuxserver/**"],
+      "versioning": "regex:^v?(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)(?:\\.(?<build>\\d+))?-ls(?<revision>\\d+)$"
+    },
+    {
+      "description": "Group Dockerfile base image updates",
+      "matchManagers": ["dockerfile"],
+      "matchDatasources": ["docker"],
+      "groupName": "docker base images"
+    }
+  ]
+}

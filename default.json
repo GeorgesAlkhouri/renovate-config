@@ -1,0 +1,62 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "Shared base config for all GeorgesAlkhouri repositories",
+  "extends": [
+    "config:best-practices",
+    ":semanticCommits"
+  ],
+  "timezone": "Europe/Berlin",
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "pre-commit": {
+    "enabled": true
+  },
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "addLabels": ["security"],
+    "automerge": false,
+    "minimumReleaseAge": null,
+    "schedule": ["at any time"]
+  },
+  "packageRules": [
+    {
+      "description": "Wait seven days before proposing any update (overrides the 3-day npm default of config:best-practices)",
+      "matchPackageNames": ["*"],
+      "minimumReleaseAge": "7 days",
+      "internalChecksFilter": "strict"
+    },
+    {
+      "description": "Digest updates carry no release timestamp, so skip the age check",
+      "matchUpdateTypes": ["digest"],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "Lock file maintenance relies on the package manager's own age checks",
+      "matchUpdateTypes": ["lockFileMaintenance"],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "Roll out our own images immediately",
+      "matchPackageNames": ["ghcr.io/georgesalkhouri/**"],
+      "minimumReleaseAge": null
+    },
+    {
+      "description": "Group non-major GitHub Actions updates",
+      "matchManagers": ["github-actions"],
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "groupName": "GitHub Actions"
+    },
+    {
+      "description": "Automerge stable (>= 1.0) minor, patch and digest updates after CI passes",
+      "matchUpdateTypes": ["minor", "patch", "digest"],
+      "matchCurrentVersion": "!/^v?0\\./",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Keep major updates manual",
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    }
+  ]
+}
