@@ -6,6 +6,10 @@
     ":semanticCommits"
   ],
   "timezone": "Europe/Berlin",
+  "assignees": [
+    "GeorgesAlkhouri"
+  ],
+  "assignAutomerge": false,
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "minimumReleaseAgeBehaviour": "timestamp-optional",
