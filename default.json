@@ -37,9 +37,10 @@
       "internalChecksFilter": "strict"
     },
     {
-      "description": "Digest updates carry no release timestamp, so skip the age check",
+      "description": "Digest and pinDigest updates carry no reliable release timestamp, so skip the age check",
       "matchUpdateTypes": [
-        "digest"
+        "digest",
+        "pinDigest"
       ],
       "minimumReleaseAge": null
     },
@@ -77,6 +78,14 @@
         "digest"
       ],
       "matchCurrentVersion": "!/^v?0\\./",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "description": "Automerge pinDigest updates after CI passes (a pin only fixes what is already in use)",
+      "matchUpdateTypes": [
+        "pinDigest"
+      ],
       "automerge": true,
       "automergeType": "pr"
     },
