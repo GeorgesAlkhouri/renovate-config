@@ -13,6 +13,7 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "minimumReleaseAgeBehaviour": "timestamp-optional",
+  "lockFileMaintenance": { "schedule": ["at any time"] },
   "pre-commit": {
     "enabled": true
   },
