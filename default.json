@@ -22,7 +22,7 @@
     "addLabels": [
       "security"
     ],
-    "automerge": false,
+    "automerge": true,
     "minimumReleaseAge": null,
     "schedule": [
       "at any time"
