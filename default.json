@@ -83,6 +83,16 @@
       "automergeType": "pr"
     },
     {
+      "description": "In 0.y.z the minor acts as the major (like Cargo/npm caret ranges): automerge patch and digest updates after CI passes, keep minor updates and 0.0.z manual",
+      "matchUpdateTypes": [
+        "patch",
+        "digest"
+      ],
+      "matchCurrentVersion": "/^v?0\\.[1-9]/",
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
       "description": "Automerge pinDigest updates after CI passes (a pin only fixes what is already in use)",
       "matchUpdateTypes": [
         "pinDigest"
